@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <form>
-      <DefaultInput placeholder="Insert Item..."></DefaultInput>
-      <DefaultButton> Add Item </DefaultButton>
-    </form>
-  </div>
+  <form @submit.prevent="submitForm($event)">
+    <DefaultInput name="input" placeholder="Insert Item..."></DefaultInput>
+    <DefaultButton> Add Item </DefaultButton>
+  </form>
 </template>
 
 <script lang="ts">
@@ -18,7 +16,16 @@ import DefaultInput from "./DefaultInput.vue";
     DefaultInput,
   },
 })
-export default class TheHeader extends Vue {}
+export default class TheHeader extends Vue {
+  value = "";
+
+  submitForm(event: any) {
+    if (!event.target.input.value) return;
+    this.value = event.target.input.value;
+    this.$emit("submitForm", this.value);
+    event.target.input.value = "";
+  }
+}
 </script>
 
 <style scoped lang="scss">
