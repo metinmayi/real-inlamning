@@ -1,27 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <TheHeader />
+  <div class="wrapper">
+    <TaskContainer>Unfinished</TaskContainer>
+    <TaskContainer>Completed</TaskContainer>
+  </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+import TheHeader from "./components/TheHeader.vue";
+import TaskContainer from "./components/TaskContainer.vue";
 
 @Options({
   components: {
-    HelloWorld,
+    TheHeader,
+    TaskContainer,
   },
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@use "./assets/styles/styles" as styles;
+body {
+  background-color: styles.$primaryColor;
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  width: 100%;
+  gap: 5%;
+  display: flex;
+  justify-content: center;
 }
 </style>
